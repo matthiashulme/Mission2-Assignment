@@ -6,17 +6,31 @@ namespace Assignment2
     {
         static void Main(string[] args)
         {
+            // Inital Message and Recieving Number of Rolls from User
+            Console.WriteLine("Welcome to the dice throwing simulator!\n");
+            Console.Write("How many dice rolls would you like to simulate?\n");
+            string s = Console.ReadLine();
+            int numRolls = Convert.ToInt32(s);
+
+            // Initializing Random and Rolls List Variables
             Random r = new Random();
+            int[] rolls = new int[13];
 
-            int[] rolls = new int[6];
-
-            // Simulate the roll of 1 die for 100 times
-            for (int i = 0; i < 100; i++)
+            // Iterate through specified number of rolls
+            for (int i = 0; i < numRolls; i++)
             {
-                rolls[r.Next(6)]++;
+                // Simulate two rolls, add them together, and add them to the rolls list variable
+                int roll1 = r.Next(6) + 1;
+                int roll2 = r.Next(6) + 1;
+                int combined = roll1 + roll2;
+                rolls[combined]++;
             }
 
-            Console.WriteLine(rolls[4]);
+            // Creating Results Class Instance and passing in Rolls for constructor
+            Results results = new Results(rolls);
+
+            // Closing Message
+            Console.WriteLine("\nThank you for using the dice throwing simulator. Goodbye!");
         }
     }
 }
